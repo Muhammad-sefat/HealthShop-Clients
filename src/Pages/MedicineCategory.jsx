@@ -5,7 +5,7 @@ import SingleMedicineCard from "./SingleMedicineCard";
 const MedicineCategory = () => {
   return (
     <div className="my-8">
-      <p className="text-4xl font-semibold text-blue-600 my-5 text-center">
+      <p className="text-2xl md:text-4xl font-semibold text-blue-600 my-5 text-center">
         All Medicine Category Here
       </p>
       <div className="p-5 grid md:grid-cols-2 lg:grid-cols-3 gap-6">

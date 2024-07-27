@@ -1,0 +1,54 @@
+[
+  {
+    "image": "https://i.ibb.co/3zm6Rq0/medicine-05.jpg",
+    "category": "Tablets",
+    "purpose": "Solid form of medication, often taken orally",
+    "medicines": [
+      "Paracetamol Tablets",
+      "Ibuprofen Tablets",
+      "Amlodipine Tablets"
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/Tcys1Hm/medicine-bottles-pills.jpg",
+    "category": "Syrups",
+    "purpose": "Liquid form of medication, often used for children or those who have difficulty swallowing pills",
+    "medicines": ["Cough Syrup", "Antihistamine Syrup", "Vitamin Syrup"]
+  },
+  {
+    "image": "https://i.ibb.co/9ZDq5Dr/medicine-04.jpg",
+    "category": "Capsules",
+    "purpose": " Solid form of medication enclosed in a gelatin shell, often taken orally",
+    "medicines": [
+      "Amoxicillin Capsules",
+      "Fish Oil Capsules",
+      "Probiotic Capsules"
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/4NVnFKF/top-view-tablets-with-thermometer-table.jpg",
+    "category": "Injections",
+    "purpose": "Liquid form of medication administered via a needle, either intramuscularly, intravenously, or subcutaneously",
+    "medicines": [
+      "Insulin Injections",
+      "Vaccine Injections",
+      "Pain Relief Injections"
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/YpvKFvX/top-view-medicine-with-thermometer-table.jpg",
+    "category": "Ointments",
+    "purpose": " Medications applied directly to the skin to treat local conditions",
+    "medicines": [
+      "Hydrocortisone Cream",
+      "Antibiotic Ointment",
+      "Antifungal Cream"
+    ]
+  },
+  {
+    "image": "https://i.ibb.co/tmgM26b/medicine-06.jpg",
+    "category": "Inhalers",
+    "purpose": "Medication administered via the respiratory system, often for conditions affecting the lungs and airways",
+    "medicines": ["Asthma Inhaler", "COPD Inhaler ", "Nasal Spray Inhaler "]
+  }
+]

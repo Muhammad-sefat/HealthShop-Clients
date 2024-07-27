@@ -1,10 +1,12 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
+import Navbar from "./Components/Navbar";
 
 function App() {
   return (
     <>
-      <p className="text-3xl font-semibold text-blue-800">Hello Everyone</p>
-      <p className="text-3xl font-semibold text-blue-700">Hello Everyone</p>
+      <Navbar />
+      <Outlet />
     </>
   );
 }

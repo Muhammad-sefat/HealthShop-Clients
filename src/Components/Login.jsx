@@ -1,23 +1,60 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 const Login = () => {
+  const { signIn, signInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    const { email, password } = data;
+    try {
+      await signIn(email, password);
+      navigate("/");
+      toast.success("Singin Successful");
+    } catch (error) {
+      toast(error.message);
+    }
+  };
+  const handleGoogle = async () => {
+    try {
+      await signInWithGoogle();
+      navigate("/");
+      toast.success("Singin Successful");
+    } catch (error) {
+      toast(error.message);
+    }
+  };
   return (
     <div className="w-full max-w-md mx-auto p-8 space-y-3 bg-teal-400 rounded-xl dark:bg-gray-50 dark:text-gray-800 shadow-xl my-8">
       <h1 className="text-3xl font-bold text-center">Login</h1>
-      <form noValidate="" action="" className="space-y-6 text-left">
+      <form
+        noValidate=""
+        action=""
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-6 text-left"
+      >
         <div className="space-y-1 text-sm">
-          <label htmlFor="username" className="block dark:text-gray-600">
-            Username
+          <label htmlFor="email" className="block dark:text-gray-600">
+            User Email
           </label>
           <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="Username"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            {...register("email", { required: true })}
             className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
           />
         </div>
+        {errors.username && <p className="text-red-600">email is required</p>}
         <div className="space-y-1 text-sm">
           <label htmlFor="password" className="block dark:text-gray-600">
             Password
@@ -27,8 +64,12 @@ const Login = () => {
             name="password"
             id="password"
             placeholder="Password"
+            {...register("password", { required: true })}
             className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
           />
+          {errors.username && (
+            <p className="text-red-600">Password is required</p>
+          )}
           <div className="flex justify-end text-xs dark:text-gray-600">
             <a rel="noopener noreferrer" href="#">
               Forgot Password?
@@ -47,7 +88,11 @@ const Login = () => {
         <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
       </div>
       <div className="flex justify-center space-x-4">
-        <button aria-label="Log in with Google" className="p-3 rounded-sm">
+        <button
+          onClick={handleGoogle}
+          aria-label="Log in with Google"
+          className="p-3 rounded-sm"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 32 32"

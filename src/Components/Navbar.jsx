@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
   const navlink = (
     <>
       <li>
@@ -49,7 +49,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-gray-50 md:px-10 mx-auto rounded z-50">
+    <div className="navbar bg-gray-50 md:px-10 mx-auto rounded relative z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -110,7 +110,7 @@ const Navbar = () => {
                 <a>Dashboard</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={logOut}>Logout</a>
               </li>
             </ul>
           </div>

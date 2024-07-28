@@ -1,9 +1,12 @@
 import axios from "axios";
-import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import useAuth from "../Hooks/useAuth";
 
 const Register = () => {
+  const { createUser, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -11,9 +14,16 @@ const Register = () => {
     setValue,
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // You can handle form submission here, like sending data to an API
+  const onSubmit = async (data) => {
+    const { email, password, username, photo } = data;
+    try {
+      await createUser(email, password);
+      updateUserProfile(username, photo);
+      navigate("/");
+      toast("SignUp Successfull");
+    } catch (error) {
+      toast(error.message);
+    }
   };
 
   const handleFileChange = async (event) => {
@@ -36,6 +46,7 @@ const Register = () => {
       }
     }
   };
+
   return (
     <div className="w-full max-w-md mx-auto p-8 space-y-3 bg-teal-400 rounded-xl dark:bg-gray-50 dark:text-gray-800 shadow-xl my-8">
       <h1 className="text-3xl font-bold text-center">Sing Up</h1>

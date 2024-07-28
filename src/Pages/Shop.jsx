@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { axiosPublic } from "../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import { FaEye } from "react-icons/fa6";
+import Modal from "./Modal";
 
 const Shop = () => {
   const [medicines, setMedicines] = useState([]);
-  console.log(medicines);
+  const [selectedMedicine, setSelectedMedicine] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -13,6 +16,16 @@ const Shop = () => {
     };
     getData();
   }, []);
+
+  const handleEyeClick = (medicine) => {
+    setSelectedMedicine(medicine);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedMedicine(null);
+  };
   return (
     <div className="md:px-8 mx-auto">
       <p className="text-4xl font-medium mb-6">All Medicine Here</p>
@@ -20,7 +33,7 @@ const Shop = () => {
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
-            <thead>
+            <thead className="font-medium text-base">
               <tr>
                 <th>
                   <label>
@@ -61,13 +74,18 @@ const Shop = () => {
                   <th>
                     <Link>Select</Link>
                   </th>
-                  <td></td>
+                  <td className="text-center text-2xl">
+                    <FaEye onClick={() => handleEyeClick(medicine)} />
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+      {isModalOpen && selectedMedicine && (
+        <Modal medicine={selectedMedicine} closeModal={closeModal} />
+      )}
     </div>
   );
 };

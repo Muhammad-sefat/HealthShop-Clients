@@ -6,14 +6,13 @@ import { Link, useParams } from "react-router-dom";
 
 const SpecificCategoryCard = () => {
   const { category } = useParams();
-  console.log(category);
   const [medicines, setMedicines] = useState([]);
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axiosPublic.get("/allmedicine");
+      const { data } = await axiosPublic.get(`/medicines/${category}`);
       setMedicines(data);
     };
     getData();
@@ -29,7 +28,7 @@ const SpecificCategoryCard = () => {
     setSelectedMedicine(null);
   };
   return (
-    <div className="md:px-8 mx-auto">
+    <div className="md:px-8 mx-auto mb-5">
       <p className="text-4xl font-medium mb-6">All Medicine Here</p>
       <div>
         <div className="overflow-x-auto">
@@ -50,7 +49,7 @@ const SpecificCategoryCard = () => {
                 <th>Action</th>
               </tr>
             </thead>
-            {/* <tbody>
+            <tbody>
               {medicines.map((medicine, index) => (
                 <tr key={index}>
                   <th>
@@ -81,7 +80,7 @@ const SpecificCategoryCard = () => {
                   </td>
                 </tr>
               ))}
-            </tbody> */}
+            </tbody>
           </table>
         </div>
       </div>

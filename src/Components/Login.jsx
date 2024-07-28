@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import { axiosPublic } from "../Hooks/useAxiosPublic";
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
@@ -25,7 +26,19 @@ const Login = () => {
   };
   const handleGoogle = async () => {
     try {
-      await signInWithGoogle();
+      const userCredential = await signInWithGoogle();
+      const user = userCredential.user;
+
+      // Construct user data to be saved
+      const userData = {
+        email: user.email,
+        username: user.displayName,
+        photo: user.photoURL,
+        role: "User",
+        timestamp: Date.now(),
+      };
+
+      await axiosPublic.put("/user", userData);
       navigate("/");
       toast.success("Singin Successful");
     } catch (error) {

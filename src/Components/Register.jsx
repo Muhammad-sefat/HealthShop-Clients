@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
+import { axiosPublic } from "../Hooks/useAxiosPublic";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -19,6 +20,8 @@ const Register = () => {
     try {
       await createUser(email, password);
       updateUserProfile(username, photo);
+      const response = await axiosPublic.put("/user", data);
+      console.log(response.data);
       navigate("/");
       toast("SignUp Successfull");
     } catch (error) {

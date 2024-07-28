@@ -29,7 +29,7 @@ const SpecificCategoryCard = () => {
   };
   return (
     <div className="md:px-8 mx-auto mb-5">
-      <p className="text-4xl font-medium mb-6">All Medicine Here</p>
+      <p className="text-4xl font-medium mb-6">Similar Medicine Here</p>
       <div>
         <div className="overflow-x-auto">
           <table className="table">

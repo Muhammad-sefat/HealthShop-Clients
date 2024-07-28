@@ -3,6 +3,7 @@ import App from "../App";
 import Login from "./Login";
 import Home from "../Pages/Home";
 import Register from "./Register";
+import Shop from "../Pages/Shop";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
       },
     ],
   },

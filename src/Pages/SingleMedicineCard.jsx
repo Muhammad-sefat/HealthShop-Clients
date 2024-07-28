@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SingleMedicineCard = ({ medicine }) => {
   return (
-    <div>
+    <Link to={`/specific-category/${medicine.category}`}>
       <div className="card bg-base-100 h-full shadow-xl hover:scale-105 transition-all">
         <figure>
           <img src={medicine.image} alt="medicine" />
@@ -17,7 +18,7 @@ const SingleMedicineCard = ({ medicine }) => {
           </ul>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

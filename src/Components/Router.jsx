@@ -4,6 +4,7 @@ import Login from "./Login";
 import Home from "../Pages/Home";
 import Register from "./Register";
 import Shop from "../Pages/Shop";
+import SpecificCategoryCard from "../Pages/SpecificCategoryCard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/specific-category/:category",
+        element: <SpecificCategoryCard />,
       },
     ],
   },

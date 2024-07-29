@@ -1,27 +1,17 @@
-import { useState, useEffect } from "react";
 import { axiosPublic } from "../Hooks/useAxiosPublic";
 import useAuth from "../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const useCartCount = () => {
   const { user } = useAuth();
-  const [cartCount, setCartCount] = useState(0);
-
-  const updateCartCount = async () => {
-    try {
-      if (user?.email) {
-        const { data } = await axiosPublic.get(`/cart-count/${user.email}`);
-        setCartCount(data.count);
-      }
-    } catch (error) {
-      console.error("Error fetching cart count:", error);
-    }
-  };
-
-  useEffect(() => {
-    updateCartCount();
-  }, [user?.email]);
-
-  return { cartCount, updateCartCount };
+  const { data: cart = [], refetch } = useQuery({
+    queryKey: ["cart", user?.email],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/cart?email=${user?.email}`);
+      return res.data;
+    },
+  });
+  return { cart, refetch };
 };
 
 export default useCartCount;

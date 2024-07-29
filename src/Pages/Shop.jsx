@@ -5,12 +5,12 @@ import { FaEye } from "react-icons/fa6";
 import Modal from "./Modal";
 import toast from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
-import useCartCount from "../Hooks/useCartContent";
 import Swal from "sweetalert2";
+import useCartCount from "../Hooks/useCartContent";
 
 const Shop = () => {
   const { user } = useAuth();
-  const { updateCartCount } = useCartCount();
+  const { refetch } = useCartCount();
   const [medicines, setMedicines] = useState([]);
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,17 +30,27 @@ const Shop = () => {
         "/add-to-cart",
         productWithUserEmail
       );
-      // Update cart count (explained in Step 3)
-      updateCartCount();
+      refetch();
       Swal.fire({
-        position: "top-end",
+        position: "top-center",
         icon: "success",
         title: "Product added to cart!",
         showConfirmButton: false,
         timer: 1500,
       });
     } catch (error) {
-      toast(error.message);
+      if (error.response && error.response.status === 400) {
+        // Product already in cart
+        Swal.fire({
+          position: "top-center",
+          icon: "warning",
+          title: "Product already in cart!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        toast(error.message);
+      }
     }
   };
 

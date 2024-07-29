@@ -4,7 +4,7 @@ import useCartCount from "../Hooks/useCartContent";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const { cartCount } = useCartCount();
+  const { cart } = useCartCount();
 
   const navlink = (
     <>
@@ -111,7 +111,7 @@ const Navbar = () => {
                     />
                   </svg>
                   <span className="badge badge-md text-white indicator-item bg-blue-600">
-                    {cartCount}
+                    {cart.length}
                   </span>
                 </div>
               </div>

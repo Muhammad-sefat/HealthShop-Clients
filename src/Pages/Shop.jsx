@@ -3,6 +3,7 @@ import { axiosPublic } from "../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa6";
 import Modal from "./Modal";
+import toast from "react-hot-toast";
 
 const Shop = () => {
   const [medicines, setMedicines] = useState([]);
@@ -16,6 +17,17 @@ const Shop = () => {
     };
     getData();
   }, []);
+
+  const handleSelectClick = async (medicine) => {
+    try {
+      const response = await axiosPublic.put("/add-to-cart", medicine);
+      // Update cart count (explained in Step 3)
+      // updateCartCount();
+      console.log("Product added to cart:", response.data);
+    } catch (error) {
+      toast(error.message);
+    }
+  };
 
   const handleEyeClick = (medicine) => {
     setSelectedMedicine(medicine);
@@ -72,7 +84,9 @@ const Shop = () => {
                   <td>${medicine.price}</td>
                   <td>{medicine.company}</td>
                   <th>
-                    <Link>Select</Link>
+                    <Link to="#" onClick={() => handleSelectClick(medicine)}>
+                      Select
+                    </Link>
                   </th>
                   <td className="text-center text-2xl">
                     <FaEye onClick={() => handleEyeClick(medicine)} />

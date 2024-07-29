@@ -87,7 +87,7 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <div className="flex-none space-x-3">
-            <div className="dropdown dropdown-end">
+            <Link to={"/cart-page"} className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
@@ -111,7 +111,7 @@ const Navbar = () => {
                   <span className="badge badge-sm indicator-item">00</span>
                 </div>
               </div>
-            </div>
+            </Link>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}

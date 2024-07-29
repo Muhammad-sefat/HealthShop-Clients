@@ -5,6 +5,7 @@ import Home from "../Pages/Home";
 import Register from "./Register";
 import Shop from "../Pages/Shop";
 import SpecificCategoryCard from "../Pages/SpecificCategoryCard";
+import CartPage from "../Pages/CartPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/specific-category/:category",
         element: <SpecificCategoryCard />,
+      },
+      {
+        path: "/cart-page",
+        element: <CartPage />,
       },
     ],
   },

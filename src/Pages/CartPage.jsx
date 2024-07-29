@@ -83,6 +83,36 @@ const CartPage = () => {
     }
   };
 
+  const handleIncreaseQuantity = async (item) => {
+    try {
+      const updatedItem = { ...item, quantity: item.quantity + 1 };
+      await axiosPublic.put(`/cart/update-quantity`, updatedItem);
+      setCartItems(
+        cartItems.map((cartItem) =>
+          cartItem._id === item._id ? updatedItem : cartItem
+        )
+      );
+    } catch (error) {
+      console.error("Error increasing quantity:", error);
+    }
+  };
+
+  const handleDecreaseQuantity = async (item) => {
+    if (item.quantity > 1) {
+      try {
+        const updatedItem = { ...item, quantity: item.quantity - 1 };
+        await axiosPublic.put(`/cart/update-quantity`, updatedItem);
+        setCartItems(
+          cartItems.map((cartItem) =>
+            cartItem._id === item._id ? updatedItem : cartItem
+          )
+        );
+      } catch (error) {
+        console.error("Error decreasing quantity:", error);
+      }
+    }
+  };
+
   return (
     <div className="md:px-8 mx-auto">
       <p className="text-4xl font-medium mb-6">Your Selected Medicine</p>
@@ -104,6 +134,7 @@ const CartPage = () => {
                 <th>Price</th>
                 <th>Company</th>
                 <th>Action</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -119,8 +150,23 @@ const CartPage = () => {
                     </div>
                   </td>
                   <td>{item.name}</td>
-                  <td>${item.price}</td>
+                  <td>${(item.price * item.quantity).toFixed(2)}</td>
                   <td>{item.company}</td>
+                  <td className="text-left">
+                    <button
+                      className="px-2 bg-red-500 text-xl text-white rounded"
+                      onClick={() => handleDecreaseQuantity(item)}
+                    >
+                      -
+                    </button>
+                    <span className="px-2">{item.quantity}</span>
+                    <button
+                      className="px-2 text-xl bg-green-500 text-white rounded"
+                      onClick={() => handleIncreaseQuantity(item)}
+                    >
+                      +
+                    </button>
+                  </td>
                   <td className="text-2xl text-right">
                     <RiDeleteBin6Line
                       className="cursor-pointer"

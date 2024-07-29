@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa6";
 import Modal from "./Modal";
 import toast from "react-hot-toast";
+import useAuth from "../Hooks/useAuth";
+import useCartCount from "../Hooks/useCartContent";
+import Swal from "sweetalert2";
 
 const Shop = () => {
+  const { user } = useAuth();
+  const { updateCartCount } = useCartCount();
   const [medicines, setMedicines] = useState([]);
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,10 +25,20 @@ const Shop = () => {
 
   const handleSelectClick = async (medicine) => {
     try {
-      const response = await axiosPublic.put("/add-to-cart", medicine);
+      const productWithUserEmail = { ...medicine, email: user.email };
+      const response = await axiosPublic.put(
+        "/add-to-cart",
+        productWithUserEmail
+      );
       // Update cart count (explained in Step 3)
-      // updateCartCount();
-      console.log("Product added to cart:", response.data);
+      updateCartCount();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Product added to cart!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     } catch (error) {
       toast(error.message);
     }

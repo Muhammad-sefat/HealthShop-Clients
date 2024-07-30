@@ -4,9 +4,11 @@ import useAuth from "../Hooks/useAuth";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useCartCount from "../Hooks/useCartContent";
+import { useNavigate } from "react-router-dom";
 
 const CartPage = () => {
   const { user, loading } = useAuth();
+  const navigate = useNavigate();
   const { refetch } = useCartCount();
   const [cartItems, setCartItems] = useState([]);
 
@@ -86,7 +88,12 @@ const CartPage = () => {
   const handleIncreaseQuantity = async (item) => {
     try {
       const updatedItem = { ...item, quantity: item.quantity + 1 };
-      await axiosPublic.put(`/cart/update-quantity`, updatedItem);
+      await axiosPublic.put(`/cart/update-quantity`, {
+        email: user.email,
+        _id: item._id,
+        quantity: updatedItem.quantity,
+      });
+      refetch();
       setCartItems(
         cartItems.map((cartItem) =>
           cartItem._id === item._id ? updatedItem : cartItem
@@ -101,7 +108,12 @@ const CartPage = () => {
     if (item.quantity > 1) {
       try {
         const updatedItem = { ...item, quantity: item.quantity - 1 };
-        await axiosPublic.put(`/cart/update-quantity`, updatedItem);
+        await axiosPublic.put(`/cart/update-quantity`, {
+          email: user.email,
+          _id: item._id,
+          quantity: updatedItem.quantity,
+        });
+        refetch();
         setCartItems(
           cartItems.map((cartItem) =>
             cartItem._id === item._id ? updatedItem : cartItem
@@ -112,6 +124,20 @@ const CartPage = () => {
       }
     }
   };
+
+  // Calculate the total price
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const handleCheckout = () => {
+    navigate("/payment-page", { state: { totalPrice } });
+  };
+
+  if (loading) {
+    return <span className="loading loading-spinner loading-lg"></span>;
+  }
 
   return (
     <div className="md:px-8 mx-auto">
@@ -178,6 +204,17 @@ const CartPage = () => {
             </tbody>
           </table>
         </div>
+      </div>
+      <div className="flex justify-between items-center py-2 mt-10 border-t-2 border-b-2 md:px-10">
+        <p className="text-2xl md:text-4xl font-semibold">
+          Total Medicine Price
+        </p>
+        <p className="text-2xl md:text-3xl font-semibold">= ${totalPrice}</p>
+      </div>
+      <div className="text-right my-5 px-5 ">
+        <button onClick={handleCheckout} className="btn btn-primary">
+          CheckOut
+        </button>
       </div>
     </div>
   );

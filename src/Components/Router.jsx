@@ -6,6 +6,7 @@ import Register from "./Register";
 import Shop from "../Pages/Shop";
 import SpecificCategoryCard from "../Pages/SpecificCategoryCard";
 import CartPage from "../Pages/CartPage";
+import PaymentPage from "../Pages/PaymentPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/cart-page",
         element: <CartPage />,
+      },
+      {
+        path: "/payment-page",
+        element: <PaymentPage />,
       },
     ],
   },

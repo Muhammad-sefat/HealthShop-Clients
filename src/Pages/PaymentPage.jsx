@@ -9,7 +9,6 @@ const PaymentPage = () => {
   const { user } = useAuth();
   const location = useLocation();
   const { totalPrice } = location.state || {};
-  console.log(totalPrice);
   return (
     <div>
       <p className="text-4xl font-semibold text-blue-500"> Your Payment</p>
@@ -29,10 +28,8 @@ const PaymentPage = () => {
               {totalPrice}
             </p>
 
-            {/* payment */}
             <Elements stripe={stripePromise}>
-              {/* checkout form */}
-              <CheckoutForm Info={user} />
+              <CheckoutForm price={totalPrice} user={user} />
             </Elements>
           </div>
         </div>

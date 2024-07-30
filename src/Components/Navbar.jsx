@@ -142,7 +142,7 @@ const Navbar = () => {
                   <a>Update Profile</a>
                 </li>
                 <li>
-                  <a>Dashboard</a>
+                  <Link to={"/dashboard"}>Dashboard</Link>
                 </li>
                 <li>
                   <a onClick={logOut}>Logout</a>

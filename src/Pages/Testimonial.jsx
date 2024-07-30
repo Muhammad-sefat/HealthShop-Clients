@@ -52,12 +52,13 @@ const Testimonial = () => {
                   </blockquote>
                   <div className="text-center dark:text-gray-600">
                     <Rating
+                      className="text-2xl"
                       initialRating={testimonial.rating}
                       readonly
                       emptySymbol={<FaRegStar className="text-yellow-400" />}
                       fullSymbol={<FaStar className="text-yellow-400" />}
                     />
-                    <p className="mt-2">{testimonial.name}</p>
+                    <p className="mt-2 font-medium">{testimonial.name}</p>
                     <p>{testimonial.profession}</p>
                   </div>
                 </div>

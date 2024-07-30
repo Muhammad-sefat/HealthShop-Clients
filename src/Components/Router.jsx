@@ -7,6 +7,7 @@ import Shop from "../Pages/Shop";
 import SpecificCategoryCard from "../Pages/SpecificCategoryCard";
 import CartPage from "../Pages/CartPage";
 import PaymentPage from "../Pages/PaymentPage";
+import DashboardLayout from "../Pages/DashboardLayout";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -42,5 +43,6 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
+  { path: "/dashboard", element: <DashboardLayout /> },
 ]);
 export default router;

@@ -1,14 +1,20 @@
 import React from "react";
-import { IoNewspaperOutline } from "react-icons/io5";
 import CommonMenu from "./CommonMenu";
+import { MdPayments } from "react-icons/md";
+import { FaAddressBook } from "react-icons/fa6";
 
 const UserMenu = () => {
   return (
     <div>
       <CommonMenu
-        link="payment-history"
+        link="paymenthistory"
         title={"Payment history"}
-        icon={IoNewspaperOutline}
+        icon={MdPayments}
+      />
+      <CommonMenu
+        link="add-review"
+        title={"Add Your Review"}
+        icon={FaAddressBook}
       />
     </div>
   );

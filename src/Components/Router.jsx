@@ -8,6 +8,15 @@ import SpecificCategoryCard from "../Pages/SpecificCategoryCard";
 import CartPage from "../Pages/CartPage";
 import PaymentPage from "../Pages/PaymentPage";
 import DashboardLayout from "../Pages/DashboardLayout";
+import ManageUser from "../Pages/Dashboard/AdminRoute/ManageUser";
+import ManageCategory from "../Pages/Dashboard/AdminRoute/ManageCategory";
+import PaymentManagement from "../Pages/Dashboard/AdminRoute/PaymentManagement";
+import SalseReport from "../Pages/Dashboard/AdminRoute/SalseReport";
+import ManageAdvertisement from "../Pages/Dashboard/AdminRoute/ManageAdvertisement";
+import ManageMedicine from "../Pages/Dashboard/SellerRoute/ManageMedicine";
+import PaymentHistory from "../Pages/Dashboard/SellerRoute/PaymentHistory";
+import Advertisement from "../Pages/Dashboard/SellerRoute/Advertisement";
+import AddReview from "../Pages/Dashboard/UserRoute/AddReview";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +52,51 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
-  { path: "/dashboard", element: <DashboardLayout /> },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <ManageUser />,
+      },
+      {
+        path: "manage-category",
+        element: <ManageCategory />,
+      },
+      {
+        path: "payment-management",
+        element: <PaymentManagement />,
+      },
+      {
+        path: "salse-report",
+        element: <SalseReport />,
+      },
+      {
+        path: "manage-advertisement",
+        element: <ManageAdvertisement />,
+      },
+      {
+        path: "manage-medicine",
+        element: <ManageMedicine />,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory />,
+      },
+      {
+        path: "advertisement",
+        element: <Advertisement />,
+      },
+      {
+        path: "paymenthistory",
+        element: <PaymentHistory />,
+      },
+      {
+        path: "add-review",
+        element: <AddReview />,
+      },
+    ],
+  },
 ]);
 export default router;

@@ -52,7 +52,7 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-teal-400 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-teal-400 w-80 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
           isActive && "-translate-x-full"
         }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
@@ -60,7 +60,9 @@ const Sidebar = () => {
           <div>
             <div className="w-full hidden md:flex px-4 py-2 justify-center items-center mx-auto">
               <Link to="/">
-                <p className="text-xl font-medium">HealthShop</p>
+                <p className="text-2xl font-semibold">
+                  Health<span className="text-orange-500">Shop</span>
+                </p>
               </Link>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import CommonMenu from "./CommonMenu";
-import { IoNewspaperOutline } from "react-icons/io5";
+import { MdManageAccounts, MdPayments } from "react-icons/md";
+import { RiAdvertisementFill } from "react-icons/ri";
 
 const SellerMenu = () => {
   return (
@@ -8,12 +9,17 @@ const SellerMenu = () => {
       <CommonMenu
         link="manage-medicine"
         title={"Manage Medicines"}
-        icon={IoNewspaperOutline}
+        icon={MdManageAccounts}
+      />
+      <CommonMenu
+        link="payment-history"
+        title={"Payment History"}
+        icon={MdPayments}
       />
       <CommonMenu
         link="advertisement"
         title={"Advertisement"}
-        icon={IoNewspaperOutline}
+        icon={RiAdvertisementFill}
       />
     </div>
   );

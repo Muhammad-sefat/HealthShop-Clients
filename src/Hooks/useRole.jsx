@@ -6,11 +6,11 @@ const useRole = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
 
-  const { data: role = [], isLoading } = useQuery({
+  const { data: role = null, isLoading } = useQuery({
     queryKey: ["role", user?.email],
     queryFn: async () => {
       const { data } = await axiosPublic.get(`/user/${user?.email}`);
-      return data.role;
+      return data.role || null;
     },
   });
   return [role, isLoading];

@@ -26,10 +26,7 @@ const Shop = () => {
   const handleSelectClick = async (medicine) => {
     try {
       const productWithUserEmail = { ...medicine, email: user.email };
-      const response = await axiosPublic.put(
-        "/add-to-cart",
-        productWithUserEmail
-      );
+      await axiosPublic.put("/add-to-cart", productWithUserEmail);
       refetch();
       Swal.fire({
         position: "top-center",

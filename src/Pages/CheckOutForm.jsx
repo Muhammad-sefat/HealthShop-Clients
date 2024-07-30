@@ -2,7 +2,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const CheckoutForm = ({ price, user }) => {
@@ -21,7 +20,6 @@ const CheckoutForm = ({ price, user }) => {
         const { data } = await axiosPublic.post("/create-payment-intent", {
           price: price,
         });
-        console.log(data.clientSecret);
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.error("Error fetching client secret:", error);

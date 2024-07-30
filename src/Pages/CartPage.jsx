@@ -86,16 +86,17 @@ const CartPage = () => {
 
   const handleIncreaseQuantity = async (item) => {
     try {
-      const updatedItem = { ...item, quantity: item.quantity + 1 };
-      await axiosPublic.put(`/cart/update-quantity`, {
+      await axiosPublic.put("/update-cart-item", {
         email: user.email,
-        _id: item._id,
-        quantity: updatedItem.quantity,
+        name: item.name,
+        quantityChange: 1,
       });
       refetch();
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem._id === item._id ? updatedItem : cartItem
+          cartItem._id === item._id
+            ? { ...cartItem, quantity: cartItem.quantity + 1 }
+            : cartItem
         )
       );
     } catch (error) {
@@ -106,16 +107,17 @@ const CartPage = () => {
   const handleDecreaseQuantity = async (item) => {
     if (item.quantity > 1) {
       try {
-        const updatedItem = { ...item, quantity: item.quantity - 1 };
-        await axiosPublic.put(`/cart/update-quantity`, {
+        await axiosPublic.put("/update-cart-item", {
           email: user.email,
-          _id: item._id,
-          quantity: updatedItem.quantity,
+          name: item.name,
+          quantityChange: -1,
         });
         refetch();
         setCartItems(
           cartItems.map((cartItem) =>
-            cartItem._id === item._id ? updatedItem : cartItem
+            cartItem._id === item._id
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
+              : cartItem
           )
         );
       } catch (error) {

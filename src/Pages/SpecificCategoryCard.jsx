@@ -3,8 +3,14 @@ import Modal from "./Modal";
 import { FaEye } from "react-icons/fa6";
 import { axiosPublic } from "../Hooks/useAxiosPublic";
 import { Link, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
+import useAuth from "../Hooks/useAuth";
+import useCartCount from "../Hooks/useCartContent";
 
 const SpecificCategoryCard = () => {
+  const { user } = useAuth();
+  const { refetch } = useCartCount();
   const { category } = useParams();
   const [medicines, setMedicines] = useState([]);
   const [selectedMedicine, setSelectedMedicine] = useState(null);
@@ -17,6 +23,34 @@ const SpecificCategoryCard = () => {
     };
     getData();
   }, []);
+
+  const handleSelectClick = async (medicine) => {
+    try {
+      const productWithUserEmail = { ...medicine, email: user.email };
+      await axiosPublic.put("/add-to-cart", productWithUserEmail);
+      refetch();
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Product added to cart!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Product already in cart
+        Swal.fire({
+          position: "top-center",
+          icon: "warning",
+          title: "Product already in cart!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        toast(error.message);
+      }
+    }
+  };
 
   const handleEyeClick = (medicine) => {
     setSelectedMedicine(medicine);
@@ -73,7 +107,9 @@ const SpecificCategoryCard = () => {
                   <td>${medicine.price}</td>
                   <td>{medicine.company}</td>
                   <th>
-                    <Link>Select</Link>
+                    <Link to={"#"} onClick={() => handleSelectClick(medicine)}>
+                      Select
+                    </Link>
                   </th>
                   <td className="text-center text-2xl">
                     <FaEye onClick={() => handleEyeClick(medicine)} />

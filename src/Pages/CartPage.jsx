@@ -20,7 +20,6 @@ const CartPage = () => {
         loading(false);
       } catch (error) {
         console.error("Error fetching cart data:", error);
-        loading(false);
       }
     };
 

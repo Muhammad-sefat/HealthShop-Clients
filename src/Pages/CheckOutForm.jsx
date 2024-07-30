@@ -1,18 +1,19 @@
 // CheckOutForm.js
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { axiosPublic } from "../Hooks/useAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const CheckoutForm = ({ price, user }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
 
   const [clientSecret, setClientSecret] = useState("");
   const [cardError, setCardError] = useState("");
   const [processing, setProcessing] = useState(false);
+  console.log(clientSecret);
 
   useEffect(() => {
     const getSecretClientData = async () => {
@@ -20,6 +21,7 @@ const CheckoutForm = ({ price, user }) => {
         const { data } = await axiosPublic.post("/create-payment-intent", {
           price: price,
         });
+        console.log(data.clientSecret);
         setClientSecret(data.clientSecret);
       } catch (error) {
         console.error("Error fetching client secret:", error);
@@ -60,6 +62,7 @@ const CheckoutForm = ({ price, user }) => {
       setProcessing(false);
       return;
     } else {
+      console.log(paymentMethod);
       setCardError("");
     }
 
@@ -83,6 +86,8 @@ const CheckoutForm = ({ price, user }) => {
     if (paymentIntent.status === "succeeded") {
       const paymentInfo = {
         price,
+        name: user.displayName,
+        email: user.email,
         userId: user._id,
         transactionId: paymentIntent.id,
         date: new Date(),
@@ -90,8 +95,12 @@ const CheckoutForm = ({ price, user }) => {
 
       try {
         const { data } = await axiosPublic.post("/payment", paymentInfo);
-        toast.success("Payment Successful");
-        navigate("/confirmation-page"); // Redirect to a confirmation page
+        Swal.fire({
+          title: "Good job!",
+          text: "Payment Successful!",
+          icon: "success",
+        });
+        console.log(data);
       } catch (error) {
         console.error("Error saving payment info:", error);
       }

@@ -24,8 +24,8 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <div className="my-8">
-      <p className="text-3xl font-semibold text-center">
+    <div className="my-10">
+      <p className="text-4xl font-semibold text-center">
         What Our Customers Say
       </p>
       <Swiper
@@ -35,7 +35,7 @@ const Testimonial = () => {
         navigation={true}
         loop={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper my-5"
       >
         {testimonials.map((testimonial, index) => (
           <SwiperSlide key={index}>

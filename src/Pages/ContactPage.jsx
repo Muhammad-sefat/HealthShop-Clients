@@ -19,7 +19,7 @@ const ContactPage = () => {
         </div>
         <form
           noValidate=""
-          className="space-y-6 border text-left p-4 rounded-md bg-gray-300"
+          className="space-y-6 border text-left p-6 rounded-md bg-gray-300 shadow-md"
         >
           <div>
             <label htmlFor="name" className="text-sm font-medium">

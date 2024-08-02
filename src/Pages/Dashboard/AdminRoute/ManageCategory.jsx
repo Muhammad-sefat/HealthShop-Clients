@@ -108,7 +108,7 @@ const ManageCategory = () => {
       </div>
       {selectedMedicine && (
         <UpdateMedicineModal
-          show={showModal}
+          showModal={showModal}
           handleClose={handleCloseModal}
           medicine={selectedMedicine}
           handleUpdate={handleUpdate}

@@ -24,7 +24,7 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <div className="my-10">
+    <div className="py-10">
       <p className="text-4xl font-semibold text-center">
         What Our Customers Say
       </p>

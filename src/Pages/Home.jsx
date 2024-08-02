@@ -3,6 +3,7 @@ import Slider from "./Slider";
 import MedicineCategory from "./MedicineCategory";
 import Testimonial from "./Testimonial";
 import DiscountProduct from "./DiscountProduct";
+import ContactPage from "./ContactPage";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <MedicineCategory />
       <DiscountProduct />
       <Testimonial />
+      <ContactPage />
     </div>
   );
 };

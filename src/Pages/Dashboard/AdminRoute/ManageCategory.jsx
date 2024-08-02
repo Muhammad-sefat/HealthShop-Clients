@@ -43,6 +43,31 @@ const ManageCategory = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axiosPublic.delete(`/medicine/${id}`);
+          setMedicines((prevMedicines) =>
+            prevMedicines.filter((medicine) => medicine._id !== id)
+          );
+          Swal.fire("Deleted!", "Medicine has been deleted.", "success");
+        } catch (error) {
+          console.error("Error deleting medicine:", error);
+          Swal.fire("Error", "Failed to delete medicine.", "error");
+        }
+      }
+    });
+  };
+
   return (
     <div>
       <p className="text-2xl md:text-4xl font-medium mb-6">All Medicine Here</p>
@@ -98,7 +123,10 @@ const ManageCategory = () => {
                     </Link>
                   </th>
                   <td className="flex justify-center">
-                    <MdDeleteOutline className="text-center text-2xl text-red-500" />
+                    <MdDeleteOutline
+                      className="text-center text-2xl text-red-500 cursor-pointer"
+                      onClick={() => handleDelete(medicine._id)}
+                    />
                   </td>
                 </tr>
               ))}

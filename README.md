@@ -23,7 +23,11 @@ HealthShop is a robust multi-vendor e-commerce platform designed to streamline o
 
 
 
-
+#### How to Clone and run in your local machine
+- git clone <repository_url>
+- cd repo-name
+- npm install   # or yarn install
+- npm start     # or yarn start
 
 
 

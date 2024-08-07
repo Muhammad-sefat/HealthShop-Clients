@@ -3,15 +3,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { axiosPublic } from "../Hooks/useAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const DiscountProduct = () => {
   const [products, setProducts] = useState([]);
+  const axiosPublic = useAxiosPublic();
+  console.log(products);
 
   useEffect(() => {
     const getData = async () => {
       const { data } = await axiosPublic.get("/discount-products");
-      setProducts(data);
+      console.log(data);
+      setProducts(Array.isArray(data) ? data : []);
     };
     getData();
   }, []);

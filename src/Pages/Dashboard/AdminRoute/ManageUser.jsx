@@ -93,7 +93,7 @@ const ManageUser = () => {
                   </div>
                 </td>
                 <td>{user.username}</td>
-                <td>${user.email}</td>
+                <td>{user.email}</td>
                 <td>
                   <select
                     value={user.role}

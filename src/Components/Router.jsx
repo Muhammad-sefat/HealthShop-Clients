@@ -17,6 +17,7 @@ import ManageMedicine from "../Pages/Dashboard/SellerRoute/ManageMedicine";
 import PaymentHistory from "../Pages/Dashboard/SellerRoute/PaymentHistory";
 import Advertisement from "../Pages/Dashboard/SellerRoute/Advertisement";
 import AddReview from "../Pages/Dashboard/UserRoute/AddReview";
+import AddMedicine from "../Pages/AddMedicine";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/payment-page",
         element: <PaymentPage />,
+      },
+      {
+        path: "/add-medicine",
+        element: <AddMedicine />,
       },
     ],
   },

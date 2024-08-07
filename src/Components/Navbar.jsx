@@ -5,6 +5,7 @@ import useCartCount from "../Hooks/useCartContent";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const { cart } = useCartCount();
+  console.log(cart);
 
   const navlink = (
     <>

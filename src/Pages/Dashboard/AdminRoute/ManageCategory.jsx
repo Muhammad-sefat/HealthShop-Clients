@@ -72,9 +72,12 @@ const ManageCategory = () => {
     <div>
       <p className="text-2xl md:text-4xl font-medium mb-6">All Medicine Here</p>
       <div className="flex justify-end px-5">
-        <p className="border border-blue-500 p-2 rounded-md font-semibold">
+        <Link
+          to={"/add-medicine"}
+          className="border border-blue-500 p-2 rounded-md font-semibold"
+        >
           Add Medicine
-        </p>
+        </Link>
       </div>
       <div>
         <div className="overflow-x-auto">

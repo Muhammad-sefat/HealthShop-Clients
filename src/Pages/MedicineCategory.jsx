@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-
 import SingleMedicineCard from "./SingleMedicineCard";
-import { axiosPublic } from "../Hooks/useAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const MedicineCategory = () => {
   const [medicines, setMedicines] = useState([]);
-
+  const axiosPublic = useAxiosPublic();
   useEffect(() => {
     const getData = async () => {
       const { data } = await axiosPublic.get("/allcategory");
-      setMedicines(data);
+      setMedicines(Array.isArray(data) ? data : []);
     };
     getData();
   }, []);

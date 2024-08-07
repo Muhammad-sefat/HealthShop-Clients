@@ -6,16 +6,18 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import Rating from "react-rating";
 import { FaStar, FaRegStar } from "react-icons/fa";
-import { axiosPublic } from "../Hooks/useAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
         const { data } = await axiosPublic.get("/testimonial");
-        setTestimonials(data);
+        console.log(data);
+        setTestimonials(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching testimonials:", error);
       }

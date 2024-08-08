@@ -11,6 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "./Firebase.config";
+import { axiosPublic } from "../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -58,10 +59,23 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // Get token from server
+  const getToken = async (email) => {
+    const { data } = await axiosPublic.post(
+      `/jwt`,
+      { email },
+      { withCredentials: true }
+    );
+    return data;
+  };
+
   //   onAuthStateChange
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        getToken(currentUser?.email);
+      }
       setLoading(false);
     });
     return () => {

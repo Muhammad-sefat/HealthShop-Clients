@@ -1,12 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import { axiosPublic } from "../Hooks/useAxiosPublic";
 
 const Login = () => {
   const { signIn, signInWithGoogle } = useAuth();
+  const location = useLocation();
+  console.log(location);
+  const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const {
     register,
@@ -18,7 +21,7 @@ const Login = () => {
     const { email, password } = data;
     try {
       await signIn(email, password);
-      navigate("/");
+      navigate(from);
       toast.success("Singin Successful");
     } catch (error) {
       toast(error.message);
@@ -39,7 +42,7 @@ const Login = () => {
       };
 
       await axiosPublic.put("/user", userData);
-      navigate("/");
+      navigate(from);
       toast.success("Singin Successful");
     } catch (error) {
       toast(error.message);

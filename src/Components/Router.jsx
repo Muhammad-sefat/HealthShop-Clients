@@ -18,6 +18,7 @@ import PaymentHistory from "../Pages/Dashboard/SellerRoute/PaymentHistory";
 import Advertisement from "../Pages/Dashboard/SellerRoute/Advertisement";
 import AddReview from "../Pages/Dashboard/UserRoute/AddReview";
 import AddMedicine from "../Pages/AddMedicine";
+import PrivateRoute from "../Provider/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,11 +34,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/specific-category/:category",
-        element: <SpecificCategoryCard />,
+        element: (
+          <PrivateRoute>
+            <SpecificCategoryCard />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/cart-page",
-        element: <CartPage />,
+        element: (
+          <PrivateRoute>
+            <CartPage />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/payment-page",

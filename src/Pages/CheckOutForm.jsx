@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
-const CheckoutForm = ({ price, user }) => {
+const CheckoutForm = ({ price, user, cartItems }) => {
   const stripe = useStripe();
   const elements = useElements();
   const axiosPublic = useAxiosPublic();
@@ -89,6 +89,7 @@ const CheckoutForm = ({ price, user }) => {
         userId: user._id,
         transactionId: paymentIntent.id,
         date: new Date(),
+        cartItems,
       };
 
       try {

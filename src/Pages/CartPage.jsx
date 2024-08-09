@@ -17,7 +17,6 @@ const CartPage = () => {
       try {
         const { data } = await axiosPublic.get(`/cart/${user.email}`);
         setCartItems(data);
-        loading(false);
       } catch (error) {
         console.error("Error fetching cart data:", error);
       }
@@ -133,7 +132,7 @@ const CartPage = () => {
   );
 
   const handleCheckout = () => {
-    navigate("/payment-page", { state: { totalPrice } });
+    navigate("/payment-page", { state: { totalPrice, cartItems } });
   };
 
   if (loading) {

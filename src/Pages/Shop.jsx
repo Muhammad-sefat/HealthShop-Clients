@@ -17,13 +17,6 @@ const Shop = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("");
 
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const { data } = await axiosPublic.get("/allmedicine");
-  //     setMedicines(data);
-  //   };
-  //   getData();
-  // }, []);
   const getData = async () => {
     const { data } = await axiosPublic.get("/allmedicine", {
       params: {

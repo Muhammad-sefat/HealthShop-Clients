@@ -19,6 +19,7 @@ import Advertisement from "../Pages/Dashboard/SellerRoute/Advertisement";
 import AddReview from "../Pages/Dashboard/UserRoute/AddReview";
 import AddMedicine from "../Pages/AddMedicine";
 import PrivateRoute from "../Provider/PrivateRoute";
+import JoinUs from "../Pages/JoinUs";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,15 @@ const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/join-us",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <JoinUs />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/specific-category/:category",

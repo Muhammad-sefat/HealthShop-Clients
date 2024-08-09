@@ -14,14 +14,29 @@ const Shop = () => {
   const [medicines, setMedicines] = useState([]);
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const { data } = await axiosPublic.get("/allmedicine");
+  //     setMedicines(data);
+  //   };
+  //   getData();
+  // }, []);
+  const getData = async () => {
+    const { data } = await axiosPublic.get("/allmedicine", {
+      params: {
+        sort: sortOrder,
+        search: searchTerm,
+      },
+    });
+    setMedicines(data);
+  };
 
   useEffect(() => {
-    const getData = async () => {
-      const { data } = await axiosPublic.get("/allmedicine");
-      setMedicines(data);
-    };
     getData();
-  }, []);
+  }, [searchTerm, sortOrder]);
 
   const handleSelectClick = async (medicine) => {
     try {
@@ -62,7 +77,25 @@ const Shop = () => {
   };
   return (
     <div className="md:px-8 mx-auto mb-5">
-      <p className="text-4xl font-medium mb-6">All Medicine Here</p>
+      <p className="text-3xl md:text-5xl font-medium mb-6">All Medicine Here</p>
+      <div className="flex justify-between items-center my-5 px-10">
+        <select
+          className="border p-2 rounded"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="">Sort by Price</option>
+          <option value="asc">Low to High</option>
+          <option value="desc">High to Low</option>
+        </select>
+        <input
+          className="border p-2 rounded w-[40%]"
+          type="text"
+          placeholder="Search Here"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
       <div>
         <div className="overflow-x-auto">
           <table className="table">

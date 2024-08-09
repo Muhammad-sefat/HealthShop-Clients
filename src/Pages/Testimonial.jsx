@@ -16,7 +16,6 @@ const Testimonial = () => {
     const fetchTestimonials = async () => {
       try {
         const { data } = await axiosPublic.get("/testimonial");
-        console.log(data);
         setTestimonials(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Error fetching testimonials:", error);

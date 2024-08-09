@@ -8,12 +8,10 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 const DiscountProduct = () => {
   const [products, setProducts] = useState([]);
   const axiosPublic = useAxiosPublic();
-  console.log(products);
 
   useEffect(() => {
     const getData = async () => {
       const { data } = await axiosPublic.get("/discount-products");
-      console.log(data);
       setProducts(Array.isArray(data) ? data : []);
     };
     getData();

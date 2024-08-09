@@ -20,6 +20,7 @@ import AddReview from "../Pages/Dashboard/UserRoute/AddReview";
 import AddMedicine from "../Pages/AddMedicine";
 import PrivateRoute from "../Provider/PrivateRoute";
 import JoinUs from "../Pages/JoinUs";
+import Profile from "../Pages/Dashboard/CommonRoute/Profile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
       {
         path: "add-review",
         element: <AddReview />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },

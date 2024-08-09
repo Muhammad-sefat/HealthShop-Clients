@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { axiosPublic } from "../../../Hooks/useAxiosPublic";
 import { MdDeleteOutline } from "react-icons/md";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const ManageUser = () => {
   const [users, setUsers] = useState([]);
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
     const getData = async () => {
@@ -54,7 +55,7 @@ const ManageUser = () => {
 
   return (
     <div>
-      <p>All User Here </p>
+      <p className="text-3xl md:text-5xl font-semibold pb-4">All User Here </p>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

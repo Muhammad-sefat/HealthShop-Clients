@@ -2,10 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { axiosPublic } from "../Hooks/useAxiosPublic";
+import useAuth from "../Hooks/useAuth";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const AddMedicine = () => {
   const { register, handleSubmit, reset, setValue } = useForm();
+  const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -30,11 +33,14 @@ const AddMedicine = () => {
       try {
         const response = await axiosPublic.post(
           `https://api.imgbb.com/1/upload?key=db7247d921e05c974cabb53b93f4bf1c`,
-          formData
+          formData,
+          { withCredentials: false }
         );
 
         if (response.data.success) {
-          setValue("photo", response.data.data.url);
+          const imageUrl = response.data.data.url;
+          setValue("image", imageUrl); // Assign the URL directly to the 'image' key
+          console.log({ image: imageUrl }); // For debugging, logs the key-value pair
         }
       } catch (error) {
         console.error("Error uploading image:", error);
@@ -58,30 +64,56 @@ const AddMedicine = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-sm font-medium">Image URL</label>
+          <label className="block text-sm font-medium">Email</label>
           <input
-            type="file"
-            {...register("image")}
-            onChange={handleFileChange}
-            required
+            type="email"
+            value={user?.email}
+            className="input input-bordered w-full"
+            readOnly
           />
+          <input type="hidden" {...register("email")} value={user?.email} />
         </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium">Image</label>
+          <input type="file" onChange={handleFileChange} required />
+        </div>
+
         <div className="mb-4">
           <label className="block text-sm font-medium">Company</label>
-          <input
+          <select
             {...register("company")}
             className="input input-bordered w-full"
             required
-          />
+          >
+            <option value="PharmaPlus">PharmaPlus</option>
+            <option value="MediCare">MediCare</option>
+            <option value="HealthCorp">HealthCorp</option>
+            <option value="XYZ Pharma">XYZ Pharma</option>
+            <option value="ABC Pharma">ABC Pharma</option>
+            <option value="Wellness Pharmaceuticals">
+              Wellness Pharmaceuticals
+            </option>
+            <option value="LifeCare Labs">LifeCare Labs</option>
+          </select>
         </div>
+
         <div className="mb-4">
           <label className="block text-sm font-medium">Category</label>
-          <input
+          <select
             {...register("category")}
             className="input input-bordered w-full"
             required
-          />
+          >
+            <option value="Inhalers">Inhalers</option>
+            <option value="Ointments">Ointments</option>
+            <option value="Injections">Injections</option>
+            <option value="Capsules">Capsules</option>
+            <option value="Syrups">Syrups</option>
+            <option value="Tablets">Tablets</option>
+          </select>
         </div>
+
         <div className="mb-4">
           <label className="block text-sm font-medium">Price</label>
           <input
@@ -91,6 +123,17 @@ const AddMedicine = () => {
             required
           />
         </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium">Short Description</label>
+          <textarea
+            {...register("description")}
+            className="input input-bordered w-full"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+
         <button type="submit" className="btn btn-primary w-full">
           Add Medicine
         </button>

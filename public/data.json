@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Napa Extra Medicine",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "MediCare",
+    "category": "Tablets",
+    "price": "32",
+    "description": "Napa Extra is used for pain relief and fever reduction. It is effective for treating headaches, muscle pain, and other mild to moderate discomfort.",
+    "image": "https://i.ibb.co/hmmKJXh/covid-still-life-with-vaccine-1.jpg"
+  },
+  {
+    "name": "Ventolin Inhaler",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "PharmaPlus",
+    "category": "Inhalers",
+    "price": "15",
+    "description": "Ventolin Inhaler is used to treat or prevent bronchospasm in people with reversible obstructive airway disease.",
+    "image": "https://i.ibb.co/yfwqf6h/library-01.jpg"
+  },
+  {
+    "name": "Hydrocortisone Ointment",
+    "email": "lmuhammadsefat55@gmail.com",
+    "company": "HealthCorp",
+    "category": "Ointments",
+    "price": "22",
+    "description": "Hydrocortisone Ointment is used to relieve skin irritation, redness, and swelling caused by conditions such as eczema and dermatitis.",
+    "image": "https://i.ibb.co/Vt2Q65T/blog.jpg"
+  },
+  {
+    "name": "Amoxicillin Injection",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "LifeCare Labs",
+    "category": "Injections",
+    "price": "50",
+    "description": "Amoxicillin Injection is an antibiotic used to treat a wide variety of bacterial infections. It works by stopping the growth of bacteria.",
+    "image": "https://i.ibb.co/R3v60K5/health.jpg"
+  },
+  {
+    "name": "Vitamin C Capsules",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "Wellness Pharmaceuticals",
+    "category": "Capsules",
+    "price": "18",
+    "description": "Vitamin C Capsules are essential for the growth and repair of tissues in the body. They are used to prevent and treat vitamin C deficiency.",
+    "image": "https://i.ibb.co/TKrvhhw/front-view-female-chemist-special-protective-suit-working-with-solutions-injection-light-white-backg.jpg"
+  },
+  {
+    "name": "Cough Syrup",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "ABC Pharma",
+    "category": "Syrups",
+    "price": "12",
+    "description": "Cough Syrup is used to relieve coughs caused by the common cold, bronchitis, and other breathing illnesses.",
+    "image": "https://i.ibb.co/VLqcVSs/medicine-bottles-pills.jpg"
+  },
+  {
+    "name": "Ibuprofen Tablets",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "XYZ Pharma",
+    "category": "Tablets",
+    "price": "20",
+    "description": "Ibuprofen Tablets are used to reduce fever and treat pain or inflammation caused by many conditions such as headache, toothache, arthritis, and menstrual cramps.",
+    "image": "https://i.ibb.co/KVcSn3b/senior-woman-holding-asthma-inhaler.jpg"
+  },
+  {
+    "name": "Bronchodilator Inhaler",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "MediCare",
+    "category": "Inhalers",
+    "price": "25",
+    "description": "Bronchodilator Inhaler is used to open the airways and make breathing easier in people with lung diseases like asthma and COPD.",
+    "image": "https://i.ibb.co/VLqcVSs/medicine-bottles-pills.jpg"
+  },
+  {
+    "name": "Antibiotic Ointment",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "PharmaPlus",
+    "category": "Ointments",
+    "price": "28",
+    "description": "Antibiotic Ointment is used to treat or prevent skin infections in minor cuts, scrapes, or burns.",
+    "image": "https://i.ibb.co/KVcSn3b/senior-woman-holding-asthma-inhaler.jpg"
+  },
+  {
+    "name": "Multivitamin Capsules",
+    "email": "muhammadsefat55@gmail.com",
+    "company": "HealthCorp",
+    "category": "Capsules",
+    "price": "30",
+    "description": "Multivitamin Capsules provide essential vitamins and minerals to help fill nutritional gaps and support overall health.",
+    "image": "https://i.ibb.co/R3v60K5/health.jpg"
+  }
+]

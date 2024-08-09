@@ -18,7 +18,7 @@ const Profile = () => {
               {user.displayName}
             </h2>
             <p className="px-5 text-xs sm:text-base dark:text-gray-600">
-              {user.role}
+              Email : {user.email}
             </p>
           </div>
           <div className="flex justify-center pt-2 space-x-4 align-center">
